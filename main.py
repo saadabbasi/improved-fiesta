@@ -1,7 +1,7 @@
 import wx
 import models
-from datalist import DataList, TerminalList, CircuitList, UltimateCircuitList
-
+from datalist import DataList, TerminalList, CircuitList, UltimateCircuitList, OLVCircuitList
+from new_circuit import NewCircuitWindow
 
 class CTSWindow(wx.Frame):
 	def __init__(self, parent):
@@ -49,8 +49,9 @@ class CircuitWindow(wx.Frame):
 
 		panel = wx.Panel(self, wx.ID_ANY)
 		vbox = wx.BoxSizer(wx.VERTICAL)
-		# self.CircuitList = CircuitList(panel)
-		self.CircuitList = UltimateCircuitList(self)
+		self.CircuitList = CircuitList(panel)
+		# self.CircuitList = UltimateCircuitList(self)
+		# self.CircuitList = OLVCircuitList(panel)
 		vbox.Add(self.CircuitList, flag = wx.EXPAND|wx.LEFT|wx.RIGHT|wx.TOP|wx.BOTTOM, border = 10)
 		panel.SetSizer(vbox)
 		self.Show(True)
@@ -71,6 +72,7 @@ class MainWindow(wx.Frame):
 
 app = wx.App(False)
 frame = MainWindow(None, "Hello World")
+frame2 = NewCircuitWindow(None)
 # frame2 = CTSWindow(None)
 frame3 = CircuitWindow(None)
 print(models.Tubes.get(models.Tubes.id == 1).diameter)
