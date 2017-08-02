@@ -1,4 +1,3 @@
-import models
 import wx
 from new_circuit import NewCircuitWindow
 
@@ -13,8 +12,7 @@ class Controller:
 
 	def AddCircuit(self, event):
 		print(self.new_circuit.getFieldsAsDict())
-
-
+		
 if __name__ == "__main__":
 	app = wx.App(False)
 	controller = Controller(app)

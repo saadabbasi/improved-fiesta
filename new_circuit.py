@@ -81,8 +81,16 @@ class NewCircuitWindow(wx.Frame):
 		self.Show(True)
 
 	def getFieldsAsDict(self):
-		return {'from_connector':self.connector_part_num_from.GetValue(),
-		'from_terminal':self.terminal_part_num_from.GetValue(),
-		'from_location':self.location_from.GetValue(),
-		'from_slot':self.slot_from.GetValue()
-		}
+		from_values = {'from_connector':self.connector_part_num_from.GetValue(),
+			'from_terminal':self.terminal_part_num_from.GetValue(),
+			'from_location':self.location_from.GetValue(),
+			'from_slot':self.slot_from.GetValue()
+			}
+
+		to_values = {'to_connector':self.connector_part_num_to.GetValue(),
+			'to_terminal':self.terminal_part_num_to.GetValue(),
+			'to_location':self.location_to.GetValue(),
+			'to_slot':self.slot_to.GetValue()
+			}
+
+		return (from_values,to_values)
