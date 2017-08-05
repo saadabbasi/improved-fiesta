@@ -1,17 +1,35 @@
 import wx
 from new_circuit import NewCircuitWindow
+import models
+import sys
+
+def get_connector(location):
+	try:
+		return(models.Connectors.get(location = location))
+	except models.Connectors.DoesNotExist:
+		return None
 
 class Controller:
 	def __init__(self, app):
-		self.new_circuit = NewCircuitWindow(None)
+		self.new_circuit = NewCircuitWindow(None,self)
 
 		def AddCircuit(event):
 			print(self.new_circuit.getFieldsAsDict())
 
 		self.new_circuit.accept_btn.Bind(wx.EVT_BUTTON, self.AddCircuit)
 
+	def get_dwg_part_number(self, location):
+		conn = get_connector(location)
+		if conn:
+			return conn.dwg_part_number
+		return None
+
 	def AddCircuit(self, event):
-		print(self.new_circuit.getFieldsAsDict())
+		fields = self.new_circuit.getFieldsAsDict()
+		try:
+			models.addCircuit(fields)
+		except models.Connectors.DoesNotExist:
+		    print("Connector not found")
 		
 if __name__ == "__main__":
 	app = wx.App(False)

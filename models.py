@@ -1,6 +1,25 @@
 from peewee import *
 
 database = SqliteDatabase('Bill of Material Maker.db', **{})
+database.execute_sql('PRAGMA foreign_keys=ON;')
+
+def addCircuit(fields):
+    connector_from = Connectors.get(location = fields['from_location'])
+    connector_to = Connectors.get(location = fields['to_location'])
+
+    terminal_from = ChildTerminals.create(parent_connector = connector_from, part_number = fields['from_terminal'])
+    terminal_to = ChildTerminals.create(parent_connector = connector_to, part_number = fields['to_terminal'])
+
+    circuit = Circuits.create(circuit_a = fields['from_circuit'], circuit_b = fields['to_circuit']
+        , from_terminal = terminal_from, to_terminal = terminal_to, wire_colour = fields['wire_color']
+        , wire_gauge = fields['wire_gauge'], wire_type = fields['wire_type'])
+
+    # from_terminal = ChildTerminals.create(parent_connector = 9, part_number = '9100-0000')
+
+
+def getConnector(id):
+    theConn = Connectors.get(Connectors.id == id)
+    return theConn
 
 class UnknownField(object):
     def __init__(self, *_, **__): pass
