@@ -1,5 +1,6 @@
 import wx
 from new_circuit import NewCircuitWindow
+from connector_list import ConnectorWindow
 import models
 import sys
 
@@ -12,6 +13,7 @@ def get_connector(location):
 class Controller:
 	def __init__(self, app):
 		self.new_circuit = NewCircuitWindow(None,self)
+		self.connector_window = ConnectorWindow(None,self)
 
 		def AddCircuit(event):
 			print(self.new_circuit.getFieldsAsDict())
