@@ -28,7 +28,7 @@ class CircuitList(wx.ListCtrl,listmix.ListCtrlAutoWidthMixin, listmix.ColumnSort
 		self.InsertColumn(3, "Wire Type")
 		self.InsertColumn(4, "Wire Colour")
 		self.InsertColumn(5, "Wire Gauge")
-		self.SetItemCount(5)
+		self.SetItemCount(1)
 
 		self.Bind(wx.EVT_LIST_ITEM_ACTIVATED, self.OnClick, self)
 
